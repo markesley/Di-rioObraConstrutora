@@ -549,6 +549,10 @@ body {
 
 /* ========== TABLES ========== */
 .table-container { overflow-x: auto; }
+.table-container {
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-md);
+}
 table { width: 100%; border-collapse: collapse; }
 thead th {
   text-align: left;
@@ -1058,6 +1062,81 @@ tbody tr:last-child td { border-bottom: none; }
   .funnel { flex-direction: column; }
   .funnel-stage { min-width: 100%; }
   .topbar-search { display: none; }
+  .topbar {
+    height: auto;
+    min-height: var(--topbar-height);
+    padding: .7rem 1rem;
+    align-items: flex-start;
+    gap: .6rem;
+    flex-direction: column;
+  }
+  .topbar-left,
+  .topbar-right {
+    width: 100%;
+  }
+  .topbar-right {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .profile-switcher {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .profile-switcher button {
+    flex: 1;
+    min-height: 38px;
+  }
+  .topbar-notification {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .btn,
+  .filter-select,
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    min-height: 42px;
+  }
+  .modal {
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+  }
+  .modal-body {
+    padding: 1rem;
+  }
+  .modal-header,
+  .modal-footer {
+    padding: .9rem 1rem;
+  }
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-search {
+    max-width: 100%;
+  }
+  .page-header-actions {
+    width: 100%;
+  }
+  .page-header-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .kpi-info .value {
+    font-size: 1.55rem;
+  }
+  .detail-header {
+    flex-direction: column;
+  }
+  .detail-header .page-header-actions {
+    width: 100%;
+  }
+  .detail-header .page-header-actions .btn {
+    flex: 1;
+  }
+  .table-container table {
+    min-width: 760px;
+  }
 }
 @media (max-width: 768px) {
   .kpi-grid { grid-template-columns: 1fr; }
@@ -1070,11 +1149,111 @@ tbody tr:last-child td { border-bottom: none; }
   .tab { padding: .6rem .75rem; font-size: .8rem; }
   .permissions-grid, .reports-grid { grid-template-columns: 1fr; }
   .kanban-grid { grid-template-columns: 1fr; }
+  .page-content {
+    padding: .9rem;
+  }
+  .card-header,
+  .card-body {
+    padding: .9rem;
+  }
+  .login-left {
+    padding: 1.25rem;
+  }
+  .login-form-wrapper {
+    max-width: 100%;
+  }
+  .login-logo {
+    margin-bottom: 1.7rem;
+  }
+  .login-form-wrapper h1 {
+    font-size: 1.45rem;
+  }
+  .grid-2,
+  .grid-3,
+  .grid-2-1 {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .photo-thumb {
+    height: 68%;
+  }
+  .diary-photo-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  .diary-photo-preview img {
+    height: 140px;
+  }
+  .task-content .meta {
+    flex-wrap: wrap;
+    gap: .35rem .75rem;
+  }
+  .diary-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .upload-area {
+    padding: 1.15rem;
+  }
+  .sidebar-logo {
+    padding: 1rem 1rem .8rem;
+  }
+  .sidebar-link {
+    padding: .72rem 1rem;
+  }
+  .sidebar-section-title {
+    padding: .5rem 1rem;
+  }
+  .sidebar-user {
+    padding: .8rem 1rem;
+  }
 }
 @media (max-width: 480px) {
-  .page-content { padding: 1rem; }
+  .page-content { padding: .75rem; }
   .detail-info-grid { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .topbar-left h2 {
+    font-size: 1rem;
+  }
+  .profile-switcher {
+    padding: .35rem;
+  }
+  .profile-switcher button {
+    padding: .35rem .5rem;
+    font-size: .75rem;
+  }
+  .btn {
+    padding: .65rem .9rem;
+    font-size: .84rem;
+  }
+  .card-header h3 {
+    font-size: .92rem;
+  }
+  .kpi-card {
+    padding: .95rem;
+  }
+  .kpi-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+  .kpi-info .value {
+    font-size: 1.4rem;
+  }
+  .table-container table {
+    min-width: 680px;
+  }
+  .modal-overlay {
+    padding: .55rem;
+  }
+  .modal-footer {
+    flex-direction: column;
+  }
+  .modal-footer .btn {
+    width: 100%;
+  }
 }
 
 /* ========== MOBILE OVERLAY ========== */
