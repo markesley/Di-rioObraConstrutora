@@ -82,7 +82,7 @@ export default function CaixaPage() {
           <h3>Movimentações em Tempo Real ({periodo})</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -115,6 +115,20 @@ export default function CaixaPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {movimentos.map((movimento) => (
+                <article key={movimento.id} className="mobile-record-card">
+                  <div className="mobile-record-title">{movimento.descricao}</div>
+                  <div className="mobile-record-row"><span>Data/Hora</span><strong>{movimento.data}</strong></div>
+                  <div className="mobile-record-row"><span>Obra</span><strong>{movimento.obra}</strong></div>
+                  <div className="mobile-record-row"><span>Responsável</span><strong>{movimento.responsavel}</strong></div>
+                  <div className="mobile-record-row"><span>Tipo</span><span className={`badge ${movimento.tipo === 'entrada' ? 'badge-green' : movimento.tipo === 'saida' ? 'badge-red' : 'badge-blue'}`}>{movimento.tipo}</span></div>
+                  <div className="mobile-record-row"><span>Valor</span><strong>{formatCurrency(movimento.valor)}</strong></div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

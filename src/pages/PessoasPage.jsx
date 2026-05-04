@@ -83,7 +83,7 @@ export default function PessoasPage() {
           <h3>Cadastro Unificado</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -116,6 +116,20 @@ export default function PessoasPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {lista.map((item) => (
+                <article key={item.id} className="mobile-record-card">
+                  <div className="mobile-record-title">{item.nome}</div>
+                  <div className="mobile-record-row"><span>Documento</span><strong>{item.documento}</strong></div>
+                  <div className="mobile-record-row"><span>Contato</span><strong>{item.contato}</strong></div>
+                  <div className="mobile-record-row"><span>Tipo</span><span className={`badge ${item.tipo === 'Cliente' ? 'badge-blue' : item.tipo === 'Usuário do sistema' ? 'badge-amber' : 'badge-green'}`}>{item.tipo}</span></div>
+                  <div className="mobile-record-row"><span>Cargo</span><strong>{item.cargo}</strong></div>
+                  <div className="mobile-record-row"><span>Obra</span><strong>{obras.find((obraRef) => obraRef.id === item.obraId)?.nome || '-'}</strong></div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -200,20 +200,6 @@ export default function AppLayout({ children, currentPage, navigateTo, userProfi
               <Bell size={18} />
               <span className="dot"></span>
             </button>
-            <div className="profile-switcher">
-              <button
-                className={userProfile === 'gerente' ? 'active' : ''}
-                onClick={() => setUserProfile('gerente')}
-              >
-                Gerente
-              </button>
-              <button
-                className={userProfile === 'operador' ? 'active' : ''}
-                onClick={() => setUserProfile('operador')}
-              >
-                Operador
-              </button>
-            </div>
           </div>
         </header>
 

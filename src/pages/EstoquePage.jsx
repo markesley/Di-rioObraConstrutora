@@ -135,7 +135,7 @@ export default function EstoquePage() {
             <h3>Saldo de Materiais</h3>
           </div>
           <div className="card-body no-pad">
-            <div className="table-container">
+            <div className="table-container desktop-only">
               <table>
                 <thead>
                   <tr>
@@ -174,6 +174,26 @@ export default function EstoquePage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="mobile-only" style={{ padding: '.9rem' }}>
+              <div className="mobile-record-list">
+                {lista.map((item) => (
+                  <article key={item.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{item.nome}</div>
+                    <div className="mobile-record-row"><span>Categoria</span><strong>{item.categoria}</strong></div>
+                    <div className="mobile-record-row"><span>Custo Médio</span><strong>{formatCurrency(item.custoMedio)}</strong></div>
+                    <div className="mobile-record-row"><span>Saldo</span><strong>{item.quantidade} {item.unidade}</strong></div>
+                    <div className="mobile-record-row"><span>Status</span><span className={`badge ${item.status === 'normal' ? 'badge-green' : item.status === 'baixo' ? 'badge-amber' : 'badge-red'}`}>{item.status}</span></div>
+                    <button className="btn btn-sm btn-outline" style={{ marginTop: '.55rem', width: '100%' }} onClick={() => {
+                      setMaterialId(item.id);
+                      setDestinoObra(item.obra);
+                      setShowBaixaModal(true);
+                    }}>
+                      Dar baixa
+                    </button>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </article>

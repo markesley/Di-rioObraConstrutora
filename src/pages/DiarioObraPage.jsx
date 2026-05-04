@@ -92,7 +92,7 @@ export default function DiarioObraPage({ userProfile, initialShowForm = false })
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: '1rem', display: 'flex', gap: '.5rem' }}>
+            <div className="diary-form-actions">
               <button className="btn btn-secondary">Salvar rascunho</button>
               <button className="btn btn-primary">Publicar registro</button>
             </div>

@@ -28,8 +28,8 @@ export default function App() {
 
   const profileHome = useMemo(
     () => ({
-      gerente: 'admin',
-      operador: 'diario',
+      gerente: 'dashboard',
+      operador: 'dashboard',
     }),
     [],
   );

@@ -88,7 +88,8 @@ export default function AdminPage({ userProfile }) {
 
 function UsersTable() {
   return (
-    <div className="table-container">
+    <>
+    <div className="table-container desktop-only">
       <table>
         <thead>
           <tr>
@@ -120,6 +121,19 @@ function UsersTable() {
         </tbody>
       </table>
     </div>
+    <div className="mobile-only">
+      <div className="mobile-record-list">
+        {users.map((user) => (
+          <article key={user.id} className="mobile-record-card">
+            <div className="mobile-record-title">{user.nome}</div>
+            <div className="mobile-record-row"><span>E-mail</span><strong>{user.email}</strong></div>
+            <div className="mobile-record-row"><span>Perfil</span><span className={`badge ${user.perfil === 'gerente' ? 'badge-blue' : 'badge-amber'}`}>{user.perfil === 'gerente' ? 'Gerente' : 'Operador'}</span></div>
+            <div className="mobile-record-row"><span>Cargo</span><strong>{user.cargo}</strong></div>
+          </article>
+        ))}
+      </div>
+    </div>
+    </>
   );
 }
 
@@ -198,7 +212,7 @@ function ServicesEtapasPanel() {
           <h3>Cadastro de Serviços</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -218,6 +232,17 @@ function ServicesEtapasPanel() {
               </tbody>
             </table>
           </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {servicosCatalogo.map((item) => (
+                <article key={item.id} className="mobile-record-card">
+                  <div className="mobile-record-title">{item.nome}</div>
+                  <div className="mobile-record-row"><span>Tipo</span><strong>{item.tipo}</strong></div>
+                  <div className="mobile-record-row"><span>Descrição</span><strong>{item.descricao}</strong></div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </article>
       <article className="card">
@@ -225,7 +250,7 @@ function ServicesEtapasPanel() {
           <h3>Cadastro de Etapas da Obra</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -244,6 +269,17 @@ function ServicesEtapasPanel() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {etapasCatalogo.map((item) => (
+                <article key={item.id} className="mobile-record-card">
+                  <div className="mobile-record-title">{item.nome}</div>
+                  <div className="mobile-record-row"><span>Ordem</span><strong>{item.ordem}</strong></div>
+                  <div className="mobile-record-row"><span>Impacto</span><strong>{item.impacto}%</strong></div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </article>

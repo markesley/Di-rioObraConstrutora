@@ -111,7 +111,7 @@ export default function ObrasListPage({ navigateTo, userProfile }) {
         </div>
 
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -176,6 +176,41 @@ export default function ObrasListPage({ navigateTo, userProfile }) {
                 })}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {filteredObras.map((obra) => {
+                const visual = getProgressVisual(obra.progresso);
+                return (
+                  <article key={obra.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{obra.nome}</div>
+                    <div className="mobile-record-row">
+                      <span>Cliente</span>
+                      <strong>{obra.cliente}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Responsável</span>
+                      <strong>{obra.responsavel}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Início</span>
+                      <strong>{formatDate(obra.dataInicio)}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Status</span>
+                      <span className={`badge ${visual.badge}`}>{visual.label}</span>
+                    </div>
+                    <div className="progress-bar-container" style={{ marginTop: '.4rem' }}>
+                      <div className={`progress-bar-fill ${visual.tone}`} style={{ width: `${visual.value}%` }} />
+                    </div>
+                    <div className="actions-row" style={{ marginTop: '.55rem', justifyContent: 'space-between' }}>
+                      <button className="btn btn-sm btn-outline" onClick={() => navigateTo('obra-detalhe', obra.id)}>Detalhes</button>
+                      <button className="btn btn-sm btn-secondary" onClick={() => openEditModal(obra)} disabled={userProfile === 'operador'}>Editar</button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

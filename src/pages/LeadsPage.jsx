@@ -60,7 +60,7 @@ export default function LeadsPage({ userProfile }) {
           <h3>Lista de Leads</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -104,6 +104,42 @@ export default function LeadsPage({ userProfile }) {
                 })}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {leads.map((lead) => {
+                const status = getLeadStatus(lead.status);
+                return (
+                  <article key={lead.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{lead.nome}</div>
+                    <div className="mobile-record-row">
+                      <span>Contato</span>
+                      <strong>{lead.contato}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Status</span>
+                      <span className={`badge ${status.badge}`}>{status.label}</span>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Interesse</span>
+                      <strong>{lead.interesse}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Valor</span>
+                      <strong>{formatCurrency(lead.valor)}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Entrada</span>
+                      <strong>{formatDate(lead.dataEntrada)}</strong>
+                    </div>
+                    <div className="actions-row" style={{ marginTop: '.55rem', justifyContent: 'space-between' }}>
+                      <button className="btn btn-sm btn-outline">Visualizar</button>
+                      <button className="btn btn-sm btn-secondary">Contato</button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

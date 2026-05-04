@@ -173,7 +173,7 @@ export default function DashboardPage({ navigateTo, userProfile }) {
           </button>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -217,6 +217,36 @@ export default function DashboardPage({ navigateTo, userProfile }) {
                 })}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {obrasAndamento.map((obra) => {
+                const visual = getProgressVisual(obra.progresso);
+                return (
+                  <article key={obra.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{obra.nome}</div>
+                    <div className="mobile-record-row">
+                      <span>Responsável</span>
+                      <strong>{obra.responsavel}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Orçamento</span>
+                      <strong>{formatCurrency(obra.orcamento)}</strong>
+                    </div>
+                    <div className="mobile-record-row">
+                      <span>Status</span>
+                      <span className={`badge ${visual.badge}`}>{visual.label}</span>
+                    </div>
+                    <div className="progress-bar-container" style={{ marginTop: '.45rem' }}>
+                      <div className={`progress-bar-fill ${visual.tone}`} style={{ width: `${visual.value}%` }} />
+                    </div>
+                    <button className="btn btn-sm btn-outline" style={{ marginTop: '.55rem', width: '100%' }} onClick={() => navigateTo('obra-detalhe', obra.id)}>
+                      Ver detalhes
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

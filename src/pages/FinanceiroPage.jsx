@@ -157,7 +157,7 @@ export default function FinanceiroPage({ userProfile }) {
             <h3>Contas a Pagar</h3>
           </div>
           <div className="card-body no-pad">
-            <div className="table-container">
+            <div className="table-container desktop-only">
               <table>
                 <thead>
                   <tr>
@@ -187,6 +187,19 @@ export default function FinanceiroPage({ userProfile }) {
                 </tbody>
               </table>
             </div>
+            <div className="mobile-only" style={{ padding: '.9rem' }}>
+              <div className="mobile-record-list">
+                {pagarFiltrado.map((item) => (
+                  <article key={item.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{item.descricao}</div>
+                    <div className="mobile-record-row"><span>Fornecedor</span><strong>{item.fornecedor}</strong></div>
+                    <div className="mobile-record-row"><span>Valor</span><strong>{formatCurrency(item.valor)}</strong></div>
+                    <div className="mobile-record-row"><span>Vencimento</span><strong>{formatDate(item.vencimento)}</strong></div>
+                    <div className="mobile-record-row"><span>Status</span><span className={`badge ${item.status === 'pago' ? 'badge-green' : item.status === 'atrasado' ? 'badge-red' : 'badge-amber'}`}>{item.status}</span></div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </article>
         <article className="card">
@@ -194,7 +207,7 @@ export default function FinanceiroPage({ userProfile }) {
             <h3>Contas a Receber</h3>
           </div>
           <div className="card-body no-pad">
-            <div className="table-container">
+            <div className="table-container desktop-only">
               <table>
                 <thead>
                   <tr>
@@ -222,6 +235,19 @@ export default function FinanceiroPage({ userProfile }) {
                 </tbody>
               </table>
             </div>
+            <div className="mobile-only" style={{ padding: '.9rem' }}>
+              <div className="mobile-record-list">
+                {receberFiltrado.map((item) => (
+                  <article key={item.id} className="mobile-record-card">
+                    <div className="mobile-record-title">{item.cliente}</div>
+                    <div className="mobile-record-row"><span>Origem</span><strong>{item.origem}</strong></div>
+                    <div className="mobile-record-row"><span>Valor</span><strong>{formatCurrency(item.valor)}</strong></div>
+                    <div className="mobile-record-row"><span>Recebimento</span><strong>{formatDate(item.recebimento)}</strong></div>
+                    <div className="mobile-record-row"><span>Status</span><span className={`badge ${item.status === 'recebido' ? 'badge-green' : item.status === 'atrasado' ? 'badge-red' : 'badge-amber'}`}>{item.status}</span></div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </article>
       </section>
@@ -231,7 +257,7 @@ export default function FinanceiroPage({ userProfile }) {
           <h3>Orçamento por Obra (Previsto vs Executado)</h3>
         </div>
         <div className="card-body no-pad">
-          <div className="table-container">
+          <div className="table-container desktop-only">
             <table>
               <thead>
                 <tr>
@@ -263,6 +289,21 @@ export default function FinanceiroPage({ userProfile }) {
                   ))}
               </tbody>
             </table>
+          </div>
+          <div className="mobile-only" style={{ padding: '.9rem' }}>
+            <div className="mobile-record-list">
+              {custosPorObra
+                .filter((item) => obraFiltro === 'todas' || item.obraId === Number(obraFiltro))
+                .map((item) => (
+                  <article key={item.obraId} className="mobile-record-card">
+                    <div className="mobile-record-title">{item.obra}</div>
+                    <div className="mobile-record-row"><span>Custo total</span><strong>{formatCurrency(item.custoRealizado)}</strong></div>
+                    <div className="mobile-record-row"><span>Recebido</span><strong>{formatCurrency(item.valorRecebido)}</strong></div>
+                    <div className="mobile-record-row"><span>Resultado</span><span className={`badge ${item.lucro >= 0 ? 'badge-green' : 'badge-red'}`}>{formatCurrency(item.lucro)}</span></div>
+                    <div className="mobile-record-row"><span>Fin. x Físico</span><strong>{item.percentualFinanceiro}% x {item.percentualFisico}%</strong></div>
+                  </article>
+                ))}
+            </div>
           </div>
         </div>
       </section>
